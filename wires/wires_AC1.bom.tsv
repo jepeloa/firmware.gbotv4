@@ -1,0 +1,15 @@
+Item	Qty	Unit	Designators
+Connector, DAC, MCP4725, 5 pins	2		AC_1, AC_2
+Connector, H-bridge board, Back_left, 5 pins	1		STEER_3
+Connector, H-bridge board, Back_right, 5 pins	1		STEER_4
+Connector, H-bridge board, Front_left, 4 pins	1		STEER_1
+Connector, H-bridge board, Front_right, 5 pins	1		STEER_2
+Connector, Op_Amp, back_left_wheel, 3 pins	1		A_2
+Connector, Op_Amp, back_right_wheel, 3 pins	1		A_3
+Connector, Op_Amp, front_left_wheel, 3 pins	1		A_0
+Connector, Op_Amp, front_right_wheel, 3 pins	1		A_1
+Connector, Uno, R3, 22 pins	1		Arduino
+Connector, powerbrain controller, 6 pins	2		POWER_BRAIN_1, POWER_BRAIN_2
+Cable, 8 x 0.25 mm² shielded	1	m	W1
+Cable, 4 x 0.25 mm² shielded	6	m	W2, W3, W4, W5, W6, W7
+Cable, 3 x 0.25 mm² shielded	4	m	W10, W11, W8, W9

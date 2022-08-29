@@ -1,0 +1,6 @@
+Item	Qty	Unit	Designators
+Connector, DAC, MCP4725, 5 pins	2		AC_3, AC_4
+Connector, Uno, R3, 22 pins	1		Arduino
+Connector, powerbrain controller, 6 pins	2		POWER_BRAIN_3, POWER_BRAIN_4
+Cable, 8 x 0.25 mm² shielded	1	m	W1
+Cable, 4 x 0.25 mm² shielded	2	m	W2, W3

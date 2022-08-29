@@ -1,0 +1,210 @@
+connectors:
+  Arduino:
+    type: Uno
+    subtype: R3
+    pinlabels: [A0, A1, A2, A3, A4, A5, Tx, Rx, D2, D3, D4, D5, D6, D7, D8, D9, D10, D11, D12, D13, GND,5V]
+
+  A_0:
+    type: Op_Amp
+    subtype: front_left_wheel
+    pinlabels: [GND, VCC, OUT]
+
+  A_1:
+    type: Op_Amp
+    subtype: front_right_wheel
+    pinlabels: [GND, VCC, OUT]
+
+  A_2:
+    type: Op_Amp
+    subtype: back_left_wheel
+    pinlabels: [GND, VCC, OUT]
+
+  A_3:
+    type: Op_Amp
+    subtype: back_right_wheel
+    pinlabels: [GND, VCC, OUT]
+  
+  AC_1:
+    type: DAC
+    subtype: MCP4725
+    pinlabels: [GND, VCC, ACL, SDA, VO]
+
+  AC_2:
+    type: DAC
+    subtype: MCP4725
+    pinlabels: [GND, VCC, SCL, SDA, VO]
+
+  POWER_BRAIN_1:
+    type: powerbrain controller
+    subtype: 
+    pinlabels: [AC, GND, ENC1, ENC2, 36V, GND_Bat]
+  
+  POWER_BRAIN_2:
+    type: powerbrain controller
+    subtype: 
+    pinlabels: [AC, GND, ENC1, ENC2, 36V, GND_Bat]
+  
+  STEER_1:
+    type: H-bridge board
+    subtype: Front_left
+    pinlabels: [5V, GND, DIR1, PWM1]
+  STEER_2:
+    type: H-bridge board
+    subtype: Front_right
+    pinlabels: [5V, GND, DIR1, PWM1, GND]
+  STEER_3:
+    type: H-bridge board
+    subtype: Back_left
+    pinlabels: [5V, GND, DIR1, PWM1, GND]
+  STEER_4:
+    type: H-bridge board
+    subtype: Back_right
+    pinlabels: [5V, GND, DIR1, PWM1, GND]
+
+cables:
+  W1:
+    gauge: 0.25 mm2
+    length: 1
+    color_code: DIN
+    wirecount: 8
+    shield: true
+  
+  W2:
+    gauge: 0.25 mm2
+    length: 1
+    colors: [BK, BU, OG, VT]
+    wirecount: 4
+    shield: true
+
+  W3:
+    gauge: 0.25 mm2
+    length: 1
+    color_code: DIN
+    wirecount: 4
+    shield: true
+  
+  W4:
+    gauge: 0.25 mm2
+    length: 1
+    colors: [BK, BU, OG, VT]
+    wirecount: 4
+    shield: true
+
+  W5:
+    gauge: 0.25 mm2
+    length: 1
+    color_code: DIN
+    wirecount: 4
+    shield: true
+
+  
+  W6:
+    gauge: 0.25 mm2
+    length: 1
+    colors: [BK, BU, OG, VT]
+    wirecount: 4
+    shield: true
+
+
+  W7:
+    gauge: 0.25 mm2
+    length: 1
+    colors: [BU, RD, YE, GN]
+    wirecount: 4
+    shield: true
+  
+  W8:
+    gauge: 0.25 mm2
+    length: 1
+    colors: [BU, RD, YE]
+    wirecount: 3
+    shield: true
+
+  W9:
+    gauge: 0.25 mm2
+    length: 1
+    colors: [BU, RD, YE]
+    wirecount: 3
+    shield: true
+
+  W10:
+    gauge: 0.25 mm2
+    length: 1
+    colors: [BU, RD, YE]
+    wirecount: 3
+    shield: true
+
+  W11:
+    gauge: 0.25 mm2
+    length: 1
+    colors: [BU, RD, YE]
+    wirecount: 3
+    shield: true
+
+connections:
+  -
+    - Arduino: [22,21,12,13]
+    - W1: [1,2,3,4]
+    - AC_1: [2,1,3,4]
+  -
+    - Arduino: [22,21,12,13]
+    - W1: [5,6,7,8]
+    - AC_2: [2,1,3,4]
+  -
+    - AC_1: [5, 1]
+    - W2: [1,2]
+    - POWER_BRAIN_1: [1,2]
+  - 
+    - AC_2: [5, 1]
+    - W3: [1,2]
+    - POWER_BRAIN_2: [1,2]
+  -
+    - Arduino: [5,6]
+    - W2: [3,4]
+    - POWER_BRAIN_1: [3,4]
+  - 
+    - Arduino: [9,10]
+    - W3: [3,4]
+    - POWER_BRAIN_2: [3,4]
+  - 
+    - Arduino: [21, 22, 14, 17]
+    - W4: [1,2,3,4]
+    - STEER_1: [2, 1, 3, 4]
+  - 
+    - Arduino: [21, 22, 14, 17]
+    - W4: [1,2,3,4]
+    - STEER_1: [2, 1, 3, 4]
+  - 
+    - Arduino: [21, 22, 15, 17]
+    - W5: [1,2,3,4]
+    - STEER_2: [2, 1, 3, 4]
+
+  -
+    - Arduino: [21, 22, 16, 18]
+    - W6: [1,2,3,4]
+    - STEER_3: [2, 1, 3, 4]
+
+  -
+    - Arduino: [21, 22, 19, 18]
+    - W7: [1,2,3,4]
+    - STEER_4: [2, 1, 3, 4]
+
+  -
+    - A_0: [1, 2, 3]
+    - W8: [1,2,3]
+    - Arduino: [21, 22, 1]
+
+  -
+    - A_1: [1, 2, 3]
+    - W9: [1,2,3]
+    - Arduino: [21, 22, 2]
+
+  -
+    - A_2: [1, 2, 3]
+    - W10: [1,2,3]
+    - Arduino: [21, 22, 3]
+    
+  -
+    - A_3: [1, 2, 3]
+    - W11: [1,2,3]
+    - Arduino: [21, 22, 4]

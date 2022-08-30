@@ -139,6 +139,7 @@ char argv2[16];
 long arg1;
 long arg2;
 bool dir_=1; 
+bool marcha=0;
 /* Clear the current command parameters */
 void resetCommand() {
   cmd = NULL;
@@ -191,9 +192,13 @@ int runCommand() {
   case DIRECTION_CHANGE:    //conmando para mover la direccion de forma manual
       Serial.println("OK");  //tengo que agregar los comandos aca
       break;
-  case DIGITAL_WRITE:
-    if (arg2 == 0) digitalWrite(arg1, LOW);
-    else if (arg2 == 1) digitalWrite(arg1, HIGH);
+  case DIGITAL_WRITE:    //esto lo voy a usar para cambiar el sentido de marcha. 
+    if (arg1==0){
+      marcha=0;       
+    }
+    if (arg1==1){
+      marcha=1;        
+    }
     Serial.println("OK"); 
     break;
   case PIN_MODE:
@@ -206,7 +211,8 @@ int runCommand() {
     break;
 #ifdef USE_SERVOS
   case SERVO_WRITE:
-    servos[arg1].setTargetPosition(arg2);
+    //Serial.println(arg2);
+    //servos[arg1].setTargetPosition(arg2);
     Serial.println("OK");
     break;
   case SERVO_READ:
@@ -229,7 +235,13 @@ int runCommand() {
     //esta es la rutina para manejo de marcha y motores
     //la funcion forward_backward setea las fases, si hay un cambio de marcha hay un delay de 500ms para volver a activar los controladores
     //
-   
+    if (marcha==0){
+      
+    }
+    else{
+      arg1=-arg1;
+      arg2=-arg2;
+    }
     
     if ((arg1 < -1 && arg2 > 0) || (arg1 > 0 && arg2 < 1)) {  //en el caso que las velocidades sean de distinto signo solo se gira la direccion
     }
@@ -317,7 +329,7 @@ void setup() {
   #ifdef ARDUINO_ENC_COUNTER
     //set as inputs
     DDRD &= ~(1<<LEFT_ENC_PIN_A);
-    DDRD &= ~(1<<LEFT_ENC_PIN_B);
+    DDRD &= ~(1<<LEFT_ENC_PIN_B);https://github.com/jepeloa/firmware.gbotv4/pull/new/inversion_marcha
     DDRC &= ~(1<<RIGHT_ENC_PIN_A);
     DDRC &= ~(1<<RIGHT_ENC_PIN_B);
     
